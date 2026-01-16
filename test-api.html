@@ -3,70 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba de API - Life2Food</title>
+    <title>Test API - Life2Food Admin</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            background: #f5f5f5;
         }
         .container {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 800px;
+            width: 100%;
         }
         h1 {
             color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .api-info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #333;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
             margin-bottom: 30px;
         }
         .btn {
-            background: #4CAF50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            margin: 5px;
-            font-size: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            flex: 1;
+            min-width: 200px;
         }
         .btn:hover {
-            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn:active {
+            transform: translateY(0);
         }
         .result {
             margin-top: 20px;
-            padding: 15px;
+            padding: 20px;
             background: #f9f9f9;
-            border-left: 4px solid #4CAF50;
-            border-radius: 4px;
-            white-space: pre-wrap;
-            font-family: monospace;
-            max-height: 400px;
+            border-left: 5px solid #667eea;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 500px;
             overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
         }
-        .error {
+        .result.error {
             border-left-color: #f44336;
             background: #ffebee;
             color: #c62828;
         }
-        .success {
+        .result.success {
             border-left-color: #4CAF50;
             background: #e8f5e9;
             color: #2e7d32;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🧪 Prueba de Conexión API</h1>
-        <p>Usa estos botones para probar la conexión con tu API:</p>
+        <h1>🧪 Test de Conexión API</h1>
+        <p class="subtitle">Prueba la conexión directa con el backend de Life2Food</p>
         
-        <div>
-            <button class="btn" onclick="testProducts()">🍔 Obtener Productos</button>
-            <button class="btn" onclick="testUsers()">👥 Obtener Usuarios</button>
-            <button class="btn" onclick="testAPI()">🔍 Verificar Conexión</button>
+        <div class="api-info" id="apiInfo">
+            📡 API: https://api.life2food.com<br>
+            🔒 CORS: Habilitado<br>
+            🔑 Credentials: Include<br>
+            🌐 Origen: <span id="currentOrigin">Cargando...</span>
+        </div>
+        
+        <div class="buttons">
+            <button class="btn" onclick="testProducts()">🍔 Productos</button>
+            <button class="btn" onclick="testUsers()">👥 Usuarios</button>
+            <button class="btn" onclick="testConnection()">🔍 Test Conexión</button>
         </div>
         
         <div id="result"></div>
@@ -80,64 +144,101 @@
             resultDiv.textContent = JSON.stringify(data, null, 2);
         }
 
+        function showLoading() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'loading';
+            resultDiv.innerHTML = '<div class="spinner"></div><p>Conectando con la API...</p>';
+        }
+
         async function testProducts() {
+            showLoading();
             try {
                 const products = await ProductsAPI.getAll();
                 showResult({
-                    status: 'Éxito ✅',
-                    message: 'Productos obtenidos correctamente',
-                    total: products.length,
-                    productos: products
+                    '✅ Estado': 'ÉXITO',
+                    '📊 Total de Productos': products.length,
+                    '🔗 Endpoint': '/products',
+                    '📦 Datos': products
                 });
             } catch (error) {
                 showResult({
-                    status: 'Error ❌',
-                    message: error.message,
-                    detalles: 'Verifica que la API esté funcionando y que no haya problemas de CORS'
+                    '❌ Estado': 'ERROR',
+                    '📛 Mensaje': error.message,
+                    '🔗 Endpoint': '/products',
+                    '💡 Solución': 'Verifica que el backend esté funcionando en https://api.life2food.com'
                 }, true);
             }
         }
 
         async function testUsers() {
+            showLoading();
             try {
                 const users = await UsersAPI.getAll();
                 showResult({
-                    status: 'Éxito ✅',
-                    message: 'Usuarios obtenidos correctamente',
-                    total: users.length,
-                    usuarios: users
+                    '✅ Estado': 'ÉXITO',
+                    '👥 Total de Usuarios': users.length,
+                    '🔗 Endpoint': '/users',
+                    '📦 Datos': users
                 });
             } catch (error) {
                 showResult({
-                    status: 'Error ❌',
-                    message: error.message,
-                    detalles: 'Verifica que la API esté funcionando y que no haya problemas de CORS'
+                    '❌ Estado': 'ERROR',
+                    '📛 Mensaje': error.message,
+                    '🔗 Endpoint': '/users',
+                    '💡 Solución': 'Verifica que el backend esté funcionando'
                 }, true);
             }
         }
 
-        async function testAPI() {
+        async function testConnection() {
+            showLoading();
             try {
                 const products = await ProductsAPI.getAll();
                 showResult({
-                    status: 'Conexión Exitosa ✅',
-                    message: 'La API está respondiendo correctamente',
-                    totalProductos: products.length,
-                    ejemplo: products[0] || 'No hay productos'
+                    '✅ Estado': 'CONEXIÓN EXITOSA',
+                    '🌐 API': 'https://api.life2food.com',
+                    '🔒 CORS': 'Configurado correctamente',
+                    '📊 Test': 'Productos cargados exitosamente',
+                    '📈 Total': products.length + ' productos encontrados',
+                    '💚 Resultado': 'El frontend está correctamente conectado al backend'
                 });
             } catch (error) {
                 showResult({
-                    status: 'Error de Conexión ❌',
-                    message: error.message,
-                    posiblesCausas: [
-                        '1. La API no está funcionando',
-                        '2. Hay un problema de CORS (el backend debe permitir tu dominio)',
-                        '3. La URL de la API es incorrecta',
-                        '4. No tienes conexión a internet'
-                    ]
+                    '❌ Estado': 'ERROR DE CONEXIÓN',
+                    '📛 Error': error.message,
+                    '🌐 API': 'https://api.life2food.com',
+                    '⚠️ Causas Posibles': [
+                        '1. El backend no está en línea',
+                        '2. La URL de la API es incorrecta',
+                        '3. Hay problemas de red',
+                        '4. El CORS del backend no permite la conexión'
+                    ],
+                    '💡 Solución': 'Verifica que el backend esté corriendo y la configuración CORS permita esta conexión'
                 }, true);
             }
         }
+
+        // Mostrar origen actual
+        window.addEventListener('load', () => {
+            const origin = window.location.origin;
+            const originSpan = document.getElementById('currentOrigin');
+            
+            if (origin === 'null' || origin.startsWith('file://')) {
+                originSpan.innerHTML = '<strong style="color: red;">file:// (❌ Necesitas un servidor HTTP)</strong>';
+                showResult({
+                    '⚠️ ADVERTENCIA': 'Estás abriendo el archivo directamente',
+                    '❌ Problema': 'Los navegadores bloquean peticiones desde file://',
+                    '💡 Solución 1': 'Ejecuta: python -m http.server 8080',
+                    '💡 Solución 2': 'Usa Live Server en VS Code',
+                    '💡 Solución 3': 'Abre desde http://localhost:8080',
+                    '📝 Nota': 'El backend debe permitir el origen http://localhost:8080 en CORS'
+                }, true);
+            } else {
+                originSpan.textContent = origin;
+                console.log('🚀 Página cargada desde:', origin);
+                console.log('📡 API configurada en:', 'https://api.life2food.com');
+            }
+        });
     </script>
 </body>
 </html>

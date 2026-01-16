@@ -1,239 +1,170 @@
-# Life2Food - Panel Administrativo
+# 🍔 Life2Food - Panel de Administración
 
-Panel de administración web para Life2Food, diseñado para gestionar usuarios, compras y productos de la aplicación móvil.
+Panel administrativo para gestionar productos, usuarios y compras de Life2Food.
 
-## 🌐 Demo en Vivo
+## 📋 Descripción
 
-Una vez desplegado en GitHub Pages, tu aplicación estará disponible en:
-`https://TU_USUARIO.github.io/life2food-admin/`
+Este es el frontend del panel administrativo de Life2Food, que se conecta directamente a la API de producción para gestionar:
 
-## 🚀 Características
+- 🍕 **Productos**: CRUD completo de productos
+- 👥 **Usuarios**: Gestión de usuarios del sistema
+- 🛒 **Compras**: Administración de carritos y pedidos
+- 📊 **Dashboard**: Estadísticas y métricas del negocio
 
-- **Dashboard Interactivo**: Visualiza estadísticas clave en tiempo real
-- **Gestión de Usuarios**: Ve y administra todos los usuarios registrados
-- **Historial de Compras**: Monitorea todas las transacciones y ventas
-- **Catálogo de Productos**: Visualiza y analiza el inventario y productos más vendidos
-- **Seguridad**: Sistema de autenticación preparado para JWT
-- **Responsive**: Diseño adaptable a diferentes dispositivos
-- **Conectado a API en Producción**: `https://api.life2food.com`
+## 🔗 Configuración de la API
 
-## 📋 Credenciales de Prueba
+El sistema se conecta directamente a:
+```
+https://api.life2food.com
+```
 
-Para probar el sistema, puedes usar estas credenciales (DEMO):
+### CORS Configurado
 
-- **Admin 1**: `admin@life2food.com` / `admin123`
-- **Admin 2**: `admin2@life2food.com` / `admin123`
-- **Admin 3**: `admin3@life2food.com` / `admin123`
+El backend tiene configuración CORS que permite:
+- ✅ Métodos: GET, POST, PUT, DELETE, PATCH, OPTIONS
+- ✅ Headers: Todos (*)
+- ✅ Credentials: Incluidas
+- ✅ Max Age: 3600 segundos
 
-⚠️ **IMPORTANTE**: Estas son credenciales de prueba. Cambiarlas cuando se conecte con el backend real.
+## 🚀 Cómo Usar
 
-## � Despliegue a GitHub Pages
+### 1️⃣ Probar la Conexión
 
-**Sigue la guía completa en:** [DEPLOY.md](DEPLOY.md)
+Abre el archivo de prueba para verificar que todo funciona:
 
-**Resumen rápido:**
-1. Crea repositorio en GitHub
-2. Informa a tu compañero tu dominio de GitHub Pages
-3. Espera que actualice CORS
-4. Sube el código con Git
-5. Activa GitHub Pages
+```
+test-api.html
+```
 
-**Mensaje para tu compañero:** Ver [MENSAJE_PARA_BACKEND.md](MENSAJE_PARA_BACKEND.md)
+Este archivo te permite:
+- Probar la conexión con la API
+- Verificar que CORS está funcionando
+- Ver si puedes obtener productos y usuarios
 
----
+### 2️⃣ Acceder al Dashboard
 
-## �🛠️ Tecnologías
+Una vez confirmado que la API responde, abre:
 
-- HTML5
-- CSS3 (Diseño moderno con variables CSS)
-- JavaScript Vanilla (ES6+)
-- Sistema preparado para JWT Authentication
+```
+index.html
+```
+
+Desde ahí podrás acceder a:
+- **Dashboard** - Vista general
+- **Productos** - Gestión de productos
+- **Usuarios** - Administración de usuarios
+- **Compras** - Gestión de pedidos
 
 ## 📁 Estructura del Proyecto
 
 ```
 life2food-admin/
-│
-├── index.html              # Página de login
-├── dashboard.html          # Dashboard principal
+├── index.html              # Página principal (login/inicio)
+├── dashboard.html          # Dashboard administrativo
+├── productos.html          # Gestión de productos
 ├── usuarios.html           # Gestión de usuarios
-├── compras.html           # Historial de compras
-├── productos.html         # Catálogo de productos
+├── compras.html            # Gestión de compras
+├── test-api.html          # ⭐ Pruebas de conexión API
 │
 ├── css/
-│   └── styles.css         # Estilos globales
+│   └── styles.css          # Estilos globales
 │
 └── js/
-    ├── auth.js            # Autenticación y JWT
-    ├── dashboard.js       # Lógica del dashboard
-    ├── usuarios.js        # Lógica de usuarios
-    ├── compras.js         # Lógica de compras
-    └── productos.js       # Lógica de productos
+    ├── api.js              # ⭐ Configuración y conexión API
+    ├── auth.js             # Autenticación
+    ├── dashboard.js        # Lógica del dashboard
+    ├── productos.js        # Gestión de productos
+    ├── usuarios.js         # Gestión de usuarios
+    └── compras.js          # Gestión de compras
 ```
 
-## � Despliegue a GitHub Pages
+## 🔧 Configuración Técnica
 
-### Opción 1: Subir a GitHub y Desplegar Automáticamente
-
-1. **Crear repositorio en GitHub:**
-   - Ve a https://github.com/new
-   - Nombra tu repositorio `life2food-admin`
-   - No inicialices con README (ya tienes uno)
-
-2. **Subir tu código:**
-   ```bash
-   cd "c:\Users\JUAN  CARLOS RIOS\OneDrive\Data Life2food\life2food-admin"
-   git init
-   git add .
-   git commit -m "Initial commit - Panel administrativo Life2Food"
-   git branch -M main
-   git remote add origin https://github.com/TU_USUARIO/life2food-admin.git
-   git push -u origin main
-   ```
-
-3. **Activar GitHub Pages:**
-   - Ve a tu repositorio en GitHub
-   - Settings → Pages
-   - Source: GitHub Actions
-   - El despliegue será automático con cada push
-
-### Opción 2: Desplegar en Netlify/Vercel
-
-**Netlify:**
-1. Ve a https://app.netlify.com
-2. Arrastra la carpeta del proyecto
-3. Tu sitio estará listo en segundos
-
-**Vercel:**
-1. Ve a https://vercel.com
-2. Importa tu repositorio de GitHub
-3. Deploy automático
-
-## 🔄 Actualizar el Despliegue
-
-Cada vez que hagas cambios:
-```bash
-git add .
-git commit -m "Descripción de cambios"
-git push
-```
-
-GitHub Pages se actualizará automáticamente.
-
-## 🌐 URL de Acceso
-
-Después del despliegue, tu panel estará disponible en:
-- **GitHub Pages**: `https://TU_USUARIO.github.io/life2food-admin/`
-- **Netlify**: `https://TU_SITIO.netlify.app`
-- **Vercel**: `https://TU_SITIO.vercel.app`
-
-## �🚦 Cómo Usar
-
-1. **Abrir el proyecto**: Simplemente abre `index.html` en tu navegador web
-2. **Login**: Usa las credenciales de prueba mencionadas arriba
-3. **Navegar**: Usa el menú lateral para acceder a las diferentes secciones
-
-## 🔐 Seguridad
-
-El sistema está preparado para implementar JWT (JSON Web Tokens) tanto en el frontend como en el backend:
-
-- **Frontend**: El archivo `auth.js` tiene toda la estructura para manejar tokens JWT
-- **LocalStorage**: Los tokens se almacenan de forma segura
-- **Verificación de Sesión**: Cada página verifica la autenticación
-- **Logout Seguro**: Limpia completamente la sesión
-
-## 🔄 Siguiente Pasos (Backend)
-
-Cuando tengas el backend listo, necesitarás:
-
-1. **Actualizar las URLs de API**: Modificar las funciones en los archivos JS para apuntar a tu backend
-2. **Implementar JWT real**: Conectar con tu sistema de autenticación
-3. **Conectar con Firebase/Base de Datos**: Reemplazar los datos de prueba con datos reales
-4. **CORS**: Configurar CORS en tu backend para permitir peticiones desde el frontend
-5. **Variables de Entorno**: Crear un archivo de configuración para las URLs del API
-
-### Ejemplo de integración con API:
+### API Configuration (js/api.js)
 
 ```javascript
-// En auth.js
-async function login(email, password) {
-    const response = await fetch('https://tu-api.com/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    });
-    
-    const data = await response.json();
-    
-    if (data.token) {
-        localStorage.setItem('authToken', data.token);
-        localStorage.setItem('userName', data.user.name);
-        return { success: true };
+const API_BASE_URL = 'https://api.life2food.com';
+
+// Configuración con credentials para CORS
+const response = await fetch(url, {
+    credentials: 'include',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
     }
-    
-    return { success: false, message: data.error };
-}
+});
 ```
 
-## 📊 Funcionalidades Preparadas para Backend
+### Endpoints Disponibles
 
-Todas las páginas tienen funciones preparadas que solo necesitan conectarse con tu API:
+#### Productos
+- `GET /products` - Listar todos los productos
+- `GET /products/{id}` - Obtener un producto
+- `POST /products` - Crear producto
+- `PATCH /products/{id}` - Actualizar producto
+- `DELETE /products/{id}` - Eliminar producto
 
-- `authenticatedFetch()`: Para hacer peticiones autenticadas
-- Filtros y búsquedas listas para recibir datos
-- Paginación preparada
-- Exportación a CSV (estructura lista)
-- Actualización en tiempo real (intervalos configurados)
+#### Usuarios
+- `GET /users` - Listar todos los usuarios
+- `GET /users/{id}` - Obtener un usuario
+- `POST /users` - Crear usuario
+- `PATCH /users/{id}` - Actualizar usuario
+- `DELETE /users/{id}` - Eliminar usuario
 
-## 🎨 Personalización
+#### Carrito
+- `GET /cart/{userId}` - Obtener carrito
+- `POST /cart/{userId}/items` - Agregar item
+- `PUT /cart/{userId}/items/{productId}` - Actualizar item
+- `DELETE /cart/{userId}/items/{productId}` - Eliminar item
 
-Puedes personalizar fácilmente los colores editando las variables CSS en `styles.css`:
+## 🛠️ Solución de Problemas
 
-```css
-:root {
-    --primary-color: #FF6B35;      /* Color principal */
-    --secondary-color: #F7931E;    /* Color secundario */
-    --dark-bg: #1a1a2e;           /* Fondo oscuro */
-    --light-bg: #16213e;          /* Fondo claro */
-    /* ... más variables ... */
-}
+### Error de CORS
+
+Si ves un error como:
 ```
+Access to fetch at 'https://api.life2food.com/products' from origin '...' 
+has been blocked by CORS policy
+```
+
+**Solución**: Verifica que el backend tenga la configuración CORS correcta (ver ejemplo en el código).
+
+### Error de Conexión
+
+Si no puedes conectar a la API:
+
+1. ✅ Verifica que el backend esté en línea
+2. ✅ Confirma que la URL es `https://api.life2food.com`
+3. ✅ Abre `test-api.html` para diagnóstico
+4. ✅ Revisa la consola del navegador (F12)
+
+### No se cargan los datos
+
+Si la conexión funciona pero no se muestran datos:
+
+1. ✅ Verifica que hay datos en la base de datos
+2. ✅ Revisa la consola para ver qué responde la API
+3. ✅ Confirma que los endpoints devuelven el formato esperado
 
 ## 📝 Notas Importantes
 
-- Los datos mostrados son **datos de prueba/DEMO**
-- El sistema de autenticación es **simulado** hasta que conectes el backend
-- Las gráficas necesitarán una librería como **Chart.js** para visualizaciones reales
-- Recuerda implementar validaciones y sanitización en el backend
+- ⚠️ **No uses proxy**: La conexión es directa a `https://api.life2food.com`
+- ⚠️ **HTTPS requerido**: Asegúrate de usar HTTPS en producción
+- ⚠️ **Credentials**: Las peticiones incluyen `credentials: 'include'`
+- ⚠️ **Test primero**: Siempre prueba con `test-api.html` antes de usar el panel
 
-## 👥 Acceso Restringido
+## 🎯 Próximos Pasos
 
-Este panel está diseñado para **solo 3 administradores**. Cuando conectes el backend, asegúrate de:
+1. Abrir `test-api.html` y verificar conexión
+2. Si funciona, proceder a `index.html`
+3. Implementar autenticación si es necesaria
+4. Agregar validaciones de formularios
+5. Mejorar el manejo de errores
 
-1. Limitar las cuentas de administrador a 3 usuarios
-2. Implementar roles y permisos
-3. Registrar todas las acciones en logs de auditoría
-4. Usar HTTPS en producción
-5. Implementar rate limiting para prevenir ataques
+## 👥 Equipo
 
-## 🛡️ Recomendaciones de Seguridad
-
-1. **Nunca** expongas las credenciales en el código en producción
-2. Usa **variables de entorno** para configuraciones sensibles
-3. Implementa **autenticación de dos factores (2FA)** para mayor seguridad
-4. Configura **tokens de expiración** apropiados
-5. Usa **HTTPS** siempre en producción
-6. Implementa **logging** de todas las acciones administrativas
-
-## 📱 Responsive Design
-
-El panel es completamente responsive y se adapta a:
-- 💻 Desktop (1920px+)
-- 💻 Laptop (1024px+)
-- 📱 Tablet (768px+)
-- 📱 Mobile (320px+)
+Desarrollado para Life2Food
 
 ---
 
-**Desarrollado para Life2Food** 🍔🍕
-*Panel de Administración v1.0*
+**Última actualización**: Enero 2026

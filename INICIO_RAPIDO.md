@@ -1,55 +1,102 @@
-# ⚡ Inicio Rápido - Life2Food Admin
+# 🚀 Guía de Inicio Rápido
 
-## 🎯 Para Usar AHORA (Desarrollo Local)
+## ⚡ Pasos para Empezar
 
-### 1. Iniciar Servidor
+### 1. Iniciar el Servidor Local
 
-**Opción A - Doble Click:**
-- Doble click en `INICIAR.bat`
+⚠️ **IMPORTANTE**: No abras los archivos HTML directamente (doble clic). Los navegadores bloquean peticiones desde `file://`
 
-**Opción B - PowerShell:**
-```powershell
-cd "c:\Users\JUAN  CARLOS RIOS\OneDrive\Data Life2food\life2food-admin"
+**Opción A: Usando INICIAR.bat**
+```
+Doble clic en INICIAR.bat
+```
+
+**Opción B: Usando Python**
+```bash
 python servidor.py
 ```
 
-### 2. Abrir en Navegador
+**Opción C: Usando comando directo**
+```bash
+python -m http.server 8080
+```
+
+Esto abrirá un servidor en: `http://localhost:8080`
+
+### 2. Configurar CORS en el Backend
+
+El backend **DEBE permitir** `http://localhost:8080`:
+
+```java
+.allowedOrigins(
+    "http://localhost:8080",  // ⭐ NECESARIO
+    "http://localhost:4200",
+    "https://api.life2food.com"
+)
+```
+
+### 3. Probar la Conexión
+
+Ve a: `http://localhost:8080/test-api.html`
+
+Haz clic en los botones para verificar:
+- ✅ Conexión con la API
+- ✅ Productos se cargan correctamente
+- ✅ Usuarios se cargan correctamente
+
+### 4. Si Funciona el Test
+
+¡Perfecto! Ahora ve a:
 
 ```
 http://localhost:8080/index.html
 ```
 
-### 3. Login
+Y empieza a usar el panel administrativo.
 
-- **Email:** `admin@life2food.com`
-- **Password:** `admin123`
+### 5. Si NO Funciona el Test
+
+**Error de CORS**: 
+- Verifica que el backend tenga la configuración CORS correcta
+- Ver archivo `CONFIGURACION_CORS.md` para más detalles
+
+**Error de Conexión**:
+- Verifica que el backend esté en línea
+- Abre la consola del navegador (F12) para ver el error exacto
+
+**No hay datos**:
+- Verifica que la base de datos tenga datos
+- Revisa que los endpoints devuelvan el formato correcto
+
+## 📂 Archivos Importantes
+
+- `test-api.html` → Pruebas de conexión
+- `js/api.js` → Configuración de la API
+- `README.md` → Documentación completa
+- `CONFIGURACION_CORS.md` → Ayuda con CORS
+
+## 🔍 Consola del Navegador
+
+Presiona **F12** para abrir la consola y ver:
+- 🔄 Peticiones que se están haciendo
+- ✅ Respuestas exitosas
+- ❌ Errores detallados
+
+## 💡 Tips
+
+1. **Siempre prueba primero** con `test-api.html`
+2. **Revisa la consola** si algo no funciona
+3. **CORS debe estar en el backend**, no en el frontend
+4. **No uses proxy**, la conexión es directa
+
+## 📞 ¿Necesitas Ayuda?
+
+Si algo no funciona:
+1. Abre la consola del navegador (F12)
+2. Copia el error que aparece
+3. Busca en `CONFIGURACION_CORS.md` si es un error de CORS
+4. Verifica que el backend esté en línea
 
 ---
 
-## ✅ Verificado que Funciona
-
-La API **SÍ está funcionando** - hay 16+ usuarios registrados:
-- Bryan Riaño
-- Juan Ceballos  
-- Maria Romero
-- Y más...
-
----
-
-## ⚠️ Importante
-
-**Puerto 8080:** Ya está permitido en el CORS del backend (configurado por tu compañero)
-
-**Sin Proxy:** Conexión directa a `https://api.life2food.com`
-
----
-
-## 🌐 Para Desplegar (Producción)
-
-Ver archivo: [DEPLOY.md](DEPLOY.md)
-
-**Resumen:**
-1. Crear repositorio en GitHub
-2. Tu compañero debe agregar tu dominio al CORS
-3. Subir código
-4. Activar GitHub Pages
+**¡Listo! Ahora puedes empezar a usar el panel administrativo.**

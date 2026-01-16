@@ -1,36 +1,56 @@
 #!/usr/bin/env python3
 """
-Servidor HTTP simple para desarrollo local
-Sirve archivos estáticos en el puerto 8080 (permitido por CORS)
-SIN proxy - Conexión directa a la API
+Servidor HTTP simple para Life2Food Admin Panel
+Ejecuta este script para servir los archivos HTML en http://localhost:8080
 """
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+import http.server
+import socketserver
 import os
+import sys
 
-class NoCacheHTTPRequestHandler(SimpleHTTPRequestHandler):
+PORT = 8080
+
+class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # Prevenir cache del navegador
+        # Agregar headers para desarrollo local
         self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
         self.send_header('Expires', '0')
         super().end_headers()
 
-if __name__ == '__main__':
+    def log_message(self, format, *args):
+        # Log más limpio
+        sys.stdout.write("%s - %s\n" % (self.address_string(), format % args))
+
+def main():
+    # Cambiar al directorio del script
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     
-    print('=' * 60)
-    print('  Life2Food - Servidor de Desarrollo')
-    print('=' * 60)
-    print()
-    print('🚀 Servidor iniciado en: http://localhost:8080')
-    print('📱 Abrir aplicación: http://localhost:8080/index.html')
-    print('🔍 Diagnóstico: http://localhost:8080/diagnostico-api.html')
-    print()
-    print('✅ Puerto 8080 permitido por CORS del backend')
-    print('🔗 API: https://api.life2food.com')
-    print()
-    print('⚠️  Presiona Ctrl+C para detener el servidor')
-    print('=' * 60)
-    print()
-    
-    server = HTTPServer(('', 8080), NoCacheHTTPRequestHandler)
-    server.serve_forever()
+    with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
+        print("=" * 60)
+        print("  🍔 Life2Food - Panel Administrativo")
+        print("=" * 60)
+        print()
+        print(f"✅ Servidor iniciado en: http://localhost:{PORT}")
+        print()
+        print("📂 Archivos disponibles:")
+        print(f"   • http://localhost:{PORT}/test-api.html     (Pruebas)")
+        print(f"   • http://localhost:{PORT}/index.html        (Principal)")
+        print(f"   • http://localhost:{PORT}/dashboard.html    (Dashboard)")
+        print()
+        print("🔗 API configurada: https://api.life2food.com")
+        print()
+        print("⚠️  IMPORTANTE:")
+        print("   El backend debe permitir 'http://localhost:8080' en CORS")
+        print()
+        print("💡 Para detener el servidor: Presiona Ctrl+C")
+        print("=" * 60)
+        print()
+        
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            print("\n\n👋 Servidor detenido")
+            sys.exit(0)
+
+if __name__ == "__main__":
+    main()
