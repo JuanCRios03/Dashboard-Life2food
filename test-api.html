@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de API - Life2Food</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .error {
+            border-left-color: #f44336;
+            background: #ffebee;
+            color: #c62828;
+        }
+        .success {
+            border-left-color: #4CAF50;
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Prueba de Conexión API</h1>
+        <p>Usa estos botones para probar la conexión con tu API:</p>
+        
+        <div>
+            <button class="btn" onclick="testProducts()">🍔 Obtener Productos</button>
+            <button class="btn" onclick="testUsers()">👥 Obtener Usuarios</button>
+            <button class="btn" onclick="testAPI()">🔍 Verificar Conexión</button>
+        </div>
+        
+        <div id="result"></div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        function showResult(data, isError = false) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result ' + (isError ? 'error' : 'success');
+            resultDiv.textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function testProducts() {
+            try {
+                const products = await ProductsAPI.getAll();
+                showResult({
+                    status: 'Éxito ✅',
+                    message: 'Productos obtenidos correctamente',
+                    total: products.length,
+                    productos: products
+                });
+            } catch (error) {
+                showResult({
+                    status: 'Error ❌',
+                    message: error.message,
+                    detalles: 'Verifica que la API esté funcionando y que no haya problemas de CORS'
+                }, true);
+            }
+        }
+
+        async function testUsers() {
+            try {
+                const users = await UsersAPI.getAll();
+                showResult({
+                    status: 'Éxito ✅',
+                    message: 'Usuarios obtenidos correctamente',
+                    total: users.length,
+                    usuarios: users
+                });
+            } catch (error) {
+                showResult({
+                    status: 'Error ❌',
+                    message: error.message,
+                    detalles: 'Verifica que la API esté funcionando y que no haya problemas de CORS'
+                }, true);
+            }
+        }
+
+        async function testAPI() {
+            try {
+                const products = await ProductsAPI.getAll();
+                showResult({
+                    status: 'Conexión Exitosa ✅',
+                    message: 'La API está respondiendo correctamente',
+                    totalProductos: products.length,
+                    ejemplo: products[0] || 'No hay productos'
+                });
+            } catch (error) {
+                showResult({
+                    status: 'Error de Conexión ❌',
+                    message: error.message,
+                    posiblesCausas: [
+                        '1. La API no está funcionando',
+                        '2. Hay un problema de CORS (el backend debe permitir tu dominio)',
+                        '3. La URL de la API es incorrecta',
+                        '4. No tienes conexión a internet'
+                    ]
+                }, true);
+            }
+        }
+    </script>
+</body>
+</html>

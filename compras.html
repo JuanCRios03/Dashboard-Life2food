@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras - Life2Food Admin</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Life2Food</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="usuarios.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    Usuarios
+                </a>
+                <a href="compras.html" class="nav-item active">
+                    <span class="icon">🛒</span>
+                    Compras
+                </a>
+                <a href="productos.html" class="nav-item">
+                    <span class="icon">📦</span>
+                    Productos
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span class="icon">🚪</span>
+                    Cerrar Sesión
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Historial de Compras</h1>
+                <div class="user-info">
+                    <span id="userName">Administrador</span>
+                </div>
+            </header>
+
+            <!-- Filters and Search -->
+            <div class="filters-section">
+                <div class="search-box">
+                    <input type="text" id="searchOrders" placeholder="Buscar por usuario, producto o ID...">
+                    <button class="btn-search">🔍</button>
+                </div>
+                <div class="filter-buttons">
+                    <select class="filter-select">
+                        <option value="all">Todos los estados</option>
+                        <option value="completed">Completadas</option>
+                        <option value="pending">Pendientes</option>
+                        <option value="cancelled">Canceladas</option>
+                    </select>
+                    <input type="date" class="filter-select" id="dateFrom" placeholder="Desde">
+                    <input type="date" class="filter-select" id="dateTo" placeholder="Hasta">
+                    <button class="btn-secondary">Exportar CSV</button>
+                </div>
+            </div>
+
+            <!-- Sales Stats -->
+            <div class="stats-grid">
+                <div class="stat-card-small">
+                    <h4>Total Compras</h4>
+                    <p class="stat-number" id="totalCarts">0</p>
+                </div>
+                <div class="stat-card-small">
+                    <h4>Total Items</h4>
+                    <p class="stat-number" id="totalItems">0</p>
+                </div>
+                <div class="stat-card-small">
+                    <h4>Valor Total</h4>
+                    <p class="stat-number" id="totalValue">$0</p>
+                </div>
+                <div class="stat-card-small">
+                    <h4>Promedio por Compra</h4>
+                    <p class="stat-number" id="avgCart">$0</p>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Email</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unit.</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="8" style="text-align: center; padding: 40px;">Cargando compras...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="btn-page">« Anterior</button>
+                <button class="btn-page active">1</button>
+                <button class="btn-page">2</button>
+                <button class="btn-page">3</button>
+                <button class="btn-page">4</button>
+                <button class="btn-page">Siguiente »</button>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal de Detalle de Carrito -->
+    <div id="cartModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Detalle del Carrito</h2>
+                <button class="modal-close" onclick="closeCartModal()">×</button>
+            </div>
+            <div id="modalCartInfo" style="margin-bottom: 20px; color: var(--text-secondary);"></div>
+            <ul id="modalCartList" class="purchases-list"></ul>
+            <div id="modalCartSummary" class="purchases-summary"></div>
+        </div>
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/compras.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Life2Food Admin</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Life2Food</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="usuarios.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    Usuarios
+                </a>
+                <a href="compras.html" class="nav-item">
+                    <span class="icon">🛒</span>
+                    Compras
+                </a>
+                <a href="productos.html" class="nav-item active">
+                    <span class="icon">📦</span>
+                    Productos
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span class="icon">🚪</span>
+                    Cerrar Sesión
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Catálogo de Productos</h1>
+                <div class="user-info">
+                    <span id="userName">Administrador</span>
+                </div>
+            </header>
+
+            <!-- Filters and Search -->
+            <div class="filters-section">
+                <div class="search-box">
+                    <input type="text" id="searchProducts" placeholder="Buscar productos...">
+                    <button class="btn-search">🔍</button>
+                </div>
+                <div class="filter-buttons">
+                    <select class="filter-select">
+                        <option value="all">Todas las categorías</option>
+                        <option value="burgers">Hamburguesas</option>
+                        <option value="pizza">Pizzas</option>
+                        <option value="salads">Ensaladas</option>
+                        <option value="drinks">Bebidas</option>
+                        <option value="desserts">Postres</option>
+                    </select>
+                    <button class="btn-secondary">Exportar CSV</button>
+                </div>
+            </div>
+
+            <!-- Product Stats -->
+            <div class="stats-grid">
+                <div class="stat-card-small">
+                    <h4>Total Productos</h4>
+                    <p class="stat-number">156</p>
+                </div>
+                <div class="stat-card-small">
+                    <h4>Más Vendido</h4>
+                    <p class="stat-number">Hamburguesa</p>
+                </div>
+                <div class="stat-card-small">
+                    <h4>Stock Bajo</h4>
+                    <p class="stat-number">12</p>
+                </div>
+                <div class="stat-card-small">
+                    <h4>Precio Promedio</h4>
+                    <p class="stat-number">$15.50</p>
+                </div>
+            </div>
+
+            <!-- Products Table -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Ventas</th>
+                            <th>Ingresos</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#P001</td>
+                            <td><div class="product-img">🍔</div></td>
+                            <td>Hamburguesa Clásica</td>
+                            <td>Hamburguesas</td>
+                            <td>$12.50</td>
+                            <td>342</td>
+                            <td>$4,275</td>
+                            <td>✅ En stock</td>
+                            <td><span class="badge badge-success">Activo</span></td>
+                            <td>
+                                <button class="btn-action" title="Ver">👁️</button>
+                                <button class="btn-action" title="Editar">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#P002</td>
+                            <td><div class="product-img">🍕</div></td>
+                            <td>Pizza Margarita</td>
+                            <td>Pizzas</td>
+                            <td>$18.00</td>
+                            <td>289</td>
+                            <td>$5,202</td>
+                            <td>✅ En stock</td>
+                            <td><span class="badge badge-success">Activo</span></td>
+                            <td>
+                                <button class="btn-action" title="Ver">👁️</button>
+                                <button class="btn-action" title="Editar">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#P003</td>
+                            <td><div class="product-img">🥗</div></td>
+                            <td>Ensalada César</td>
+                            <td>Ensaladas</td>
+                            <td>$9.99</td>
+                            <td>198</td>
+                            <td>$1,978</td>
+                            <td>✅ En stock</td>
+                            <td><span class="badge badge-success">Activo</span></td>
+                            <td>
+                                <button class="btn-action" title="Ver">👁️</button>
+                                <button class="btn-action" title="Editar">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#P004</td>
+                            <td><div class="product-img">🌭</div></td>
+                            <td>Hot Dog Especial</td>
+                            <td>Hamburguesas</td>
+                            <td>$8.50</td>
+                            <td>156</td>
+                            <td>$1,326</td>
+                            <td>⚠️ Stock bajo</td>
+                            <td><span class="badge badge-success">Activo</span></td>
+                            <td>
+                                <button class="btn-action" title="Ver">👁️</button>
+                                <button class="btn-action" title="Editar">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#P005</td>
+                            <td><div class="product-img">🥤</div></td>
+                            <td>Refresco Grande</td>
+                            <td>Bebidas</td>
+                            <td>$3.50</td>
+                            <td>567</td>
+                            <td>$1,984</td>
+                            <td>✅ En stock</td>
+                            <td><span class="badge badge-success">Activo</span></td>
+                            <td>
+                                <button class="btn-action" title="Ver">👁️</button>
+                                <button class="btn-action" title="Editar">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#P006</td>
+                            <td><div class="product-img">🍰</div></td>
+                            <td>Cheesecake</td>
+                            <td>Postres</td>
+                            <td>$7.50</td>
+                            <td>123</td>
+                            <td>$922</td>
+                            <td>✅ En stock</td>
+                            <td><span class="badge badge-success">Activo</span></td>
+                            <td>
+                                <button class="btn-action" title="Ver">👁️</button>
+                                <button class="btn-action" title="Editar">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#P007</td>
+                            <td><div class="product-img">🌮</div></td>
+                            <td>Tacos al Pastor x3</td>
+                            <td>Tacos</td>
+                            <td>$6.00</td>
+                            <td>234</td>
+                            <td>$1,404</td>
+                            <td>✅ En stock</td>
+                            <td><span class="badge badge-success">Activo</span></td>
+                            <td>
+                                <button class="btn-action" title="Ver">👁️</button>
+                                <button class="btn-action" title="Editar">✏️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Top Products Chart -->
+            <div class="chart-card" style="margin-top: 30px;">
+                <h3>Productos Más Vendidos (Últimos 30 días)</h3>
+                <div class="top-products">
+                    <div class="product-bar">
+                        <span class="product-name">🍔 Hamburguesa Clásica</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;">342 ventas</div>
+                        </div>
+                    </div>
+                    <div class="product-bar">
+                        <span class="product-name">🍕 Pizza Margarita</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 76%;">289 ventas</div>
+                        </div>
+                    </div>
+                    <div class="product-bar">
+                        <span class="product-name">🥗 Ensalada César</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 52%;">198 ventas</div>
+                        </div>
+                    </div>
+                    <div class="product-bar">
+                        <span class="product-name">🌮 Tacos al Pastor</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 62%;">234 ventas</div>
+                        </div>
+                    </div>
+                    <div class="product-bar">
+                        <span class="product-name">🌭 Hot Dog Especial</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 41%;">156 ventas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="btn-page">« Anterior</button>
+                <button class="btn-page active">1</button>
+                <button class="btn-page">2</button>
+                <button class="btn-page">3</button>
+                <button class="btn-page">Siguiente »</button>
+            </div>
+        </main>
+    </div>
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/productos.js"></script>
+</body>
+</html>

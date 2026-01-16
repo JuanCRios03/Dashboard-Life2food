@@ -1,0 +1,40 @@
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Node.js (si se usa en el futuro)
+node_modules/
+package-lock.json
+npm-debug.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Archivos de desarrollo local
+.env
+.env.local
+
+# No incluir archivos de instrucciones para backend
+CORS_CONFIG_BACKEND.java
+INSTRUCCIONES_PARA_BACKEND.md
+INICIAR.bat
+INICIAR_SERVIDOR.md
+proxy-server.py

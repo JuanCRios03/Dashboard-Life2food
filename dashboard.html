@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Life2Food Admin</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Life2Food</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <span class="icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="usuarios.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    Usuarios
+                </a>
+                <a href="compras.html" class="nav-item">
+                    <span class="icon">🛒</span>
+                    Compras
+                </a>
+                <a href="productos.html" class="nav-item">
+                    <span class="icon">📦</span>
+                    Productos
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span class="icon">🚪</span>
+                    Cerrar Sesión
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <span id="userName">Administrador</span>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #4CAF50;">👥</div>
+                    <div class="stat-info">
+                        <h3>Usuarios Registrados</h3>
+                        <p class="stat-number">1,234</p>
+                        <span class="stat-change positive">+12% este mes</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #2196F3;">🛒</div>
+                    <div class="stat-info">
+                        <h3>Compras Totales</h3>
+                        <p class="stat-number">5,678</p>
+                        <span class="stat-change positive">+8% este mes</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FF9800;">💰</div>
+                    <div class="stat-info">
+                        <h3>Ingresos Totales</h3>
+                        <p class="stat-number">$45,890</p>
+                        <span class="stat-change positive">+15% este mes</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #9C27B0;">📦</div>
+                    <div class="stat-info">
+                        <h3>Productos Activos</h3>
+                        <p class="stat-number">156</p>
+                        <span class="stat-change">Sin cambios</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Ventas por Mes</h3>
+                    <div class="chart-placeholder">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Productos Más Vendidos</h3>
+                    <div class="chart-placeholder">
+                        <canvas id="productsChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Distribución de Categorías</h3>
+                    <div class="chart-placeholder">
+                        <canvas id="categoriesChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Usuarios Nuevos vs Recurrentes</h3>
+                    <div class="chart-placeholder">
+                        <canvas id="usersChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h3>Actividad Reciente</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Acción</th>
+                            <th>Producto</th>
+                            <th>Monto</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>María González</td>
+                            <td><span class="badge badge-success">Compra</span></td>
+                            <td>Hamburguesa Clásica</td>
+                            <td>$12.50</td>
+                            <td>Hace 5 min</td>
+                        </tr>
+                        <tr>
+                            <td>Juan Pérez</td>
+                            <td><span class="badge badge-info">Registro</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Hace 15 min</td>
+                        </tr>
+                        <tr>
+                            <td>Ana López</td>
+                            <td><span class="badge badge-success">Compra</span></td>
+                            <td>Pizza Margarita</td>
+                            <td>$18.00</td>
+                            <td>Hace 23 min</td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Ruiz</td>
+                            <td><span class="badge badge-success">Compra</span></td>
+                            <td>Ensalada César</td>
+                            <td>$9.99</td>
+                            <td>Hace 1 hora</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
