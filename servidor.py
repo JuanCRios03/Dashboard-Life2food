@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
 Servidor HTTP simple para Life2Food Admin Panel
-Ejecuta este script para servir los archivos HTML en http://localhost:8080
+Ejecuta este script para servir los archivos HTML en http://localhost:3000
 """
 import http.server
 import socketserver
 import os
 import sys
 
-PORT = 8080
+PORT = 3000
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
@@ -37,10 +37,10 @@ def main():
         print(f"   • http://localhost:{PORT}/index.html        (Principal)")
         print(f"   • http://localhost:{PORT}/dashboard.html    (Dashboard)")
         print()
-        print("🔗 API configurada: https://api.life2food.com")
+        print("🔗 API configurada: http://localhost:8080")
         print()
         print("⚠️  IMPORTANTE:")
-        print("   El backend debe permitir 'http://localhost:8080' en CORS")
+        print("   El backend Spring Boot debe estar corriendo en puerto 8080")
         print()
         print("💡 Para detener el servidor: Presiona Ctrl+C")
         print("=" * 60)

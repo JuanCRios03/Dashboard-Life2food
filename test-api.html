@@ -117,20 +117,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>🧪 Test de Conexión API</h1>
+        <h1>Test de Conexión API</h1>
         <p class="subtitle">Prueba la conexión directa con el backend de Life2Food</p>
         
         <div class="api-info" id="apiInfo">
-            📡 API: https://api.life2food.com<br>
-            🔒 CORS: Habilitado<br>
-            🔑 Credentials: Include<br>
-            🌐 Origen: <span id="currentOrigin">Cargando...</span>
+            API: https://api.life2food.com<br>
+            CORS: Habilitado<br>
+            Credentials: Include<br>
+            Origen: <span id="currentOrigin">Cargando...</span>
         </div>
         
         <div class="buttons">
-            <button class="btn" onclick="testProducts()">🍔 Productos</button>
-            <button class="btn" onclick="testUsers()">👥 Usuarios</button>
-            <button class="btn" onclick="testConnection()">🔍 Test Conexión</button>
+            <button class="btn" onclick="testProducts()">Productos</button>
+            <button class="btn" onclick="testUsers()">Usuarios</button>
+            <button class="btn" onclick="testConnection()">Test Conexión</button>
         </div>
         
         <div id="result"></div>
@@ -155,17 +155,17 @@
             try {
                 const products = await ProductsAPI.getAll();
                 showResult({
-                    '✅ Estado': 'ÉXITO',
-                    '📊 Total de Productos': products.length,
-                    '🔗 Endpoint': '/products',
-                    '📦 Datos': products
+                    'Estado': 'ÉXITO',
+                    'Total de Productos': products.length,
+                    'Endpoint': '/products',
+                    'Datos': products
                 });
             } catch (error) {
                 showResult({
-                    '❌ Estado': 'ERROR',
-                    '📛 Mensaje': error.message,
-                    '🔗 Endpoint': '/products',
-                    '💡 Solución': 'Verifica que el backend esté funcionando en https://api.life2food.com'
+                    'Estado': 'ERROR',
+                    'Mensaje': error.message,
+                    'Endpoint': '/products',
+                    'Solución': 'Verifica que el backend esté funcionando en https://api.life2food.com'
                 }, true);
             }
         }
@@ -175,17 +175,17 @@
             try {
                 const users = await UsersAPI.getAll();
                 showResult({
-                    '✅ Estado': 'ÉXITO',
-                    '👥 Total de Usuarios': users.length,
-                    '🔗 Endpoint': '/users',
-                    '📦 Datos': users
+                    'Estado': 'ÉXITO',
+                    'Total de Usuarios': users.length,
+                    'Endpoint': '/users',
+                    'Datos': users
                 });
             } catch (error) {
                 showResult({
-                    '❌ Estado': 'ERROR',
-                    '📛 Mensaje': error.message,
-                    '🔗 Endpoint': '/users',
-                    '💡 Solución': 'Verifica que el backend esté funcionando'
+                    'Estado': 'ERROR',
+                    'Mensaje': error.message,
+                    'Endpoint': '/users',
+                    'Solución': 'Verifica que el backend esté funcionando'
                 }, true);
             }
         }
@@ -195,25 +195,25 @@
             try {
                 const products = await ProductsAPI.getAll();
                 showResult({
-                    '✅ Estado': 'CONEXIÓN EXITOSA',
-                    '🌐 API': 'https://api.life2food.com',
-                    '🔒 CORS': 'Configurado correctamente',
-                    '📊 Test': 'Productos cargados exitosamente',
-                    '📈 Total': products.length + ' productos encontrados',
-                    '💚 Resultado': 'El frontend está correctamente conectado al backend'
+                    'Estado': 'CONEXIÓN EXITOSA',
+                    'API': 'https://api.life2food.com',
+                    'CORS': 'Configurado correctamente',
+                    'Test': 'Productos cargados exitosamente',
+                    'Total': products.length + ' productos encontrados',
+                    'Resultado': 'El frontend está correctamente conectado al backend'
                 });
             } catch (error) {
                 showResult({
-                    '❌ Estado': 'ERROR DE CONEXIÓN',
-                    '📛 Error': error.message,
-                    '🌐 API': 'https://api.life2food.com',
-                    '⚠️ Causas Posibles': [
+                    'Estado': 'ERROR DE CONEXIÓN',
+                    'Error': error.message,
+                    'API': 'https://api.life2food.com',
+                    'Causas Posibles': [
                         '1. El backend no está en línea',
                         '2. La URL de la API es incorrecta',
                         '3. Hay problemas de red',
                         '4. El CORS del backend no permite la conexión'
                     ],
-                    '💡 Solución': 'Verifica que el backend esté corriendo y la configuración CORS permita esta conexión'
+                    'Solución': 'Verifica que el backend esté corriendo y la configuración CORS permita esta conexión'
                 }, true);
             }
         }
@@ -224,19 +224,19 @@
             const originSpan = document.getElementById('currentOrigin');
             
             if (origin === 'null' || origin.startsWith('file://')) {
-                originSpan.innerHTML = '<strong style="color: red;">file:// (❌ Necesitas un servidor HTTP)</strong>';
+                originSpan.innerHTML = '<strong style="color: red;">file:// (Necesitas un servidor HTTP)</strong>';
                 showResult({
-                    '⚠️ ADVERTENCIA': 'Estás abriendo el archivo directamente',
-                    '❌ Problema': 'Los navegadores bloquean peticiones desde file://',
-                    '💡 Solución 1': 'Ejecuta: python -m http.server 8080',
-                    '💡 Solución 2': 'Usa Live Server en VS Code',
-                    '💡 Solución 3': 'Abre desde http://localhost:8080',
-                    '📝 Nota': 'El backend debe permitir el origen http://localhost:8080 en CORS'
+                    'ADVERTENCIA': 'Estás abriendo el archivo directamente',
+                    'Problema': 'Los navegadores bloquean peticiones desde file://',
+                    'Solución 1': 'Ejecuta: python -m http.server 8080',
+                    'Solución 2': 'Usa Live Server en VS Code',
+                    'Solución 3': 'Abre desde http://localhost:8080',
+                    'Nota': 'El backend debe permitir el origen http://localhost:8080 en CORS'
                 }, true);
             } else {
                 originSpan.textContent = origin;
-                console.log('🚀 Página cargada desde:', origin);
-                console.log('📡 API configurada en:', 'https://api.life2food.com');
+                console.log('Página cargada desde:', origin);
+                console.log('API configurada en:', 'https://api.life2food.com');
             }
         });
     </script>

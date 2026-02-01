@@ -195,6 +195,7 @@ body {
 .nav-item .icon {
     font-size: 1.3rem;
     margin-right: 12px;
+    display: none;
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -260,6 +261,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
+    display: none;
 }
 
 .stat-info h3 {

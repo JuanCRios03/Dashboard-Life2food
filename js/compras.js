@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // Cargar carritos de todos los usuarios
 async function loadCartsData() {
     try {
-        console.log('🔄 Cargando compras...');
+        console.log('Cargando compras...');
         
         // Obtener todos los usuarios
         const users = await UsersAPI.getAll();
         allUsers = users;
         
-        console.log('✅ Usuarios cargados:', users.length);
+        console.log('Usuarios cargados:', users.length);
         
         // Obtener carritos de todos los usuarios y convertir a compras individuales
         const cartPromises = users.map(async (user) => {
@@ -50,8 +50,8 @@ async function loadCartsData() {
         // Aplanar el array de arrays
         allPurchases = results.flat();
         
-        console.log('✅ Total de compras individuales:', allPurchases.length);
-        console.log('📦 Datos de compras:', allPurchases);
+        console.log('Total de compras individuales:', allPurchases.length);
+        console.log('Datos de compras:', allPurchases);
         
         // Mostrar compras en la tabla
         displayPurchases(currentPage);
@@ -109,7 +109,7 @@ function displayPurchases(page) {
             <td>$${price.toFixed(2)}</td>
             <td><strong>$${total.toFixed(2)}</strong></td>
             <td>
-                <button class="btn-action" onclick="showPurchaseDetails(${startIndex + index})" title="Ver detalles">👁️</button>
+                <button class="btn-action" onclick="showPurchaseDetails(${startIndex + index})" title="Ver detalles">Ver</button>
             </td>
         </tr>
         `;
@@ -139,7 +139,7 @@ function updatePurchasesStats(purchases) {
     const avgPurchase = purchases.length > 0 ? totalValue / purchases.length : 0;
     document.getElementById('avgCart').textContent = `$${avgPurchase.toFixed(2)}`;
     
-    console.log(`📊 Estadísticas: ${purchases.length} compras, ${totalItems} items, $${totalValue.toFixed(2)} total`);
+    console.log(`Estadísticas: ${purchases.length} compras, ${totalItems} items, $${totalValue.toFixed(2)} total`);
 }
 
 // Configurar paginación
@@ -207,18 +207,18 @@ function showPurchaseDetails(index) {
     const total = price * quantity;
     const productDesc = item.product?.description || item.description || 'Sin descripción';
     
-    console.log('🛒 Mostrando detalle de compra:', purchase);
+    console.log('Mostrando detalle de compra:', purchase);
     
     // Información de la compra
     document.getElementById('modalCartInfo').innerHTML = `
         <div style="background: var(--light-bg); padding: 15px; border-radius: 8px; margin-bottom: 10px;">
             <h3 style="color: var(--primary-color); margin-bottom: 10px;">Información del Cliente</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                <div><strong>👤 Cliente:</strong> ${fullName}</div>
-                <div><strong>📧 Email:</strong> ${userEmail}</div>
+                <div><strong>Cliente:</strong> ${fullName}</div>
+                <div><strong>Email:</strong> ${userEmail}</div>
             </div>
         </div>
-        <h3 style="color: var(--primary-color); margin-bottom: 15px;">📦 Detalle del Producto</h3>
+        <h3 style="color: var(--primary-color); margin-bottom: 15px;">Detalle del Producto</h3>
     `;
     
     // Detalle del producto
@@ -226,22 +226,22 @@ function showPurchaseDetails(index) {
     cartList.innerHTML = `
         <li class="purchase-item">
             <div class="purchase-item-header">
-                <span class="product-name">🛍️ ${productName}</span>
+                <span class="product-name">${productName}</span>
                 <span class="product-quantity">x${quantity}</span>
             </div>
             <div class="product-details" style="margin-top: 8px;">
                 ${productDesc}
             </div>
             <div class="product-details" style="margin-top: 8px;">
-                💵 Precio unitario: $${price.toFixed(2)} | <strong>Subtotal: $${total.toFixed(2)}</strong>
+                Precio unitario: $${price.toFixed(2)} | <strong>Subtotal: $${total.toFixed(2)}</strong>
             </div>
         </li>
     `;
     
     // Resumen
     document.getElementById('modalCartSummary').innerHTML = `
-        <span>🛒 Cantidad: <strong>${quantity}</strong></span>
-        <span>💰 Total: <strong>$${total.toFixed(2)}</strong></span>
+        <span>Cantidad: <strong>${quantity}</strong></span>
+        <span>Total: <strong>$${total.toFixed(2)}</strong></span>
     `;
     
     // Mostrar modal

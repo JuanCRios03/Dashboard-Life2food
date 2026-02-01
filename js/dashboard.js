@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Cargar estadísticas del dashboard
 async function loadDashboardStats() {
     try {
-        console.log('🔄 Cargando estadísticas del dashboard...');
+        console.log('Cargando estadísticas del dashboard...');
         
         // Obtener datos de usuarios
         const users = await UsersAPI.getAll();
@@ -27,7 +27,7 @@ async function loadDashboardStats() {
         if (userElement) {
             userElement.textContent = formatNumber(userCount);
         }
-        console.log('✅ Usuarios cargados:', userCount);
+        console.log('Usuarios cargados:', userCount);
         
         // Obtener datos de productos
         const products = await ProductsAPI.getAll();
@@ -36,7 +36,7 @@ async function loadDashboardStats() {
         if (productElement) {
             productElement.textContent = productCount;
         }
-        console.log('✅ Productos cargados:', productCount);
+        console.log('Productos cargados:', productCount);
         
         // Actualizar gráfica de productos con datos reales
         if (products.length > 0) {
@@ -44,9 +44,9 @@ async function loadDashboardStats() {
             updateCategoriesChart(products);
         }
         
-        console.log('✅ Dashboard actualizado con datos reales');
+        console.log('Dashboard actualizado con datos reales');
     } catch (error) {
-        console.error('❌ Error cargando estadísticas:', error);
+        console.error('Error cargando estadísticas:', error);
         alert('Error al cargar datos de la API. Revisa la consola para más detalles.');
     }
 }
@@ -200,7 +200,7 @@ function updateProductsChart(products) {
     productsChartInstance.data.datasets[0].data = data;
     productsChartInstance.update();
     
-    console.log('📊 Gráfica de productos actualizada');
+    console.log('Gráfica de productos actualizada');
 }
 
 // Actualizar gráfica de categorías con datos reales
@@ -223,7 +223,7 @@ function updateCategoriesChart(products) {
     categoriesChartInstance.data.datasets[0].backgroundColor = colors.slice(0, labels.length);
     categoriesChartInstance.update();
     
-    console.log('📊 Gráfica de categorías actualizada');
+    console.log('Gráfica de categorías actualizada');
 }
 
 // Función para formatear números

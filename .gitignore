@@ -38,3 +38,5 @@ INSTRUCCIONES_PARA_BACKEND.md
 INICIAR.bat
 INICIAR_SERVIDOR.md
 proxy-server.py
+# Credenciales sensibles (no subir)
+CREDENCIALES_SEGURAS.txt

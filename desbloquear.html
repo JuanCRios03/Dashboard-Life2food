@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desbloqueando cuenta...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        h1 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #28a745;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .success {
+            color: #28a745;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Desbloqueando Cuenta</h1>
+        <div class="spinner"></div>
+        <p class="success" id="message">Limpiando bloqueo del navegador...</p>
+    </div>
+
+    <script>
+        // Limpiar el bloqueo del navegador
+        localStorage.removeItem('loginAttempts');
+        localStorage.removeItem('lockoutUntil');
+        
+        // Mostrar mensaje de éxito
+        setTimeout(() => {
+            document.getElementById('message').innerHTML = '¡Cuenta desbloqueada!<br><br>Redirigiendo al login...';
+            
+            // Redirigir al login después de 2 segundos
+            setTimeout(() => {
+                window.location.href = 'http://localhost:8080';
+            }, 2000);
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Cargar usuarios y productos desde la API
 async function loadUsersAndProducts() {
     try {
-        console.log('🔄 Cargando usuarios y productos...');
+        console.log('Cargando usuarios y productos...');
         
         // Cargar usuarios y productos en paralelo
         const [users, products] = await Promise.all([
@@ -22,9 +22,9 @@ async function loadUsersAndProducts() {
         allUsers = users;
         allProducts = products;
         
-        console.log('✅ Usuarios cargados:', users.length);
-        console.log('✅ Productos cargados:', products.length);
-        console.log('📦 Productos completos:', products);
+        console.log('Usuarios cargados:', users.length);
+        console.log('Productos cargados:', products.length);
+        console.log('Productos completos:', products);
         
         // Agrupar productos por usuario (usando email como key)
         groupProductsByUser(users, products);
@@ -60,7 +60,7 @@ function groupProductsByUser(users, products) {
         }
     });
     
-    console.log('📊 Productos agrupados por usuario:', userProducts);
+    console.log('Productos agrupados por usuario:', userProducts);
 }
 
 // Actualizar estadísticas de usuarios
@@ -85,7 +85,7 @@ function updateUserStats(users) {
     
     document.getElementById('newUsers').textContent = newUsers;
     
-    console.log(`📊 Estadísticas: Total=${totalUsers}, Activos=${activeUsers}, Nuevos=${newUsers}`);
+    console.log(`Estadísticas: Total=${totalUsers}, Activos=${activeUsers}, Nuevos=${newUsers}`);
 }
 
 // Mostrar usuarios en la tabla
@@ -131,9 +131,9 @@ function displayUsers(users) {
                 </span>
             </td>
             <td>
-                <button class="btn-action" onclick="showPurchasesModal('${userEmail}')" title="Ver detalles y productos">👁️</button>
-                <button class="btn-action" onclick="editUser(${user.id})" title="Editar">✏️</button>
-                <button class="btn-action" onclick="deleteUserById(${user.id})" title="Eliminar">🗑️</button>
+                <button class="btn-action" onclick="showPurchasesModal('${userEmail}')" title="Ver detalles y productos">Ver</button>
+                <button class="btn-action" onclick="editUser(${user.id})" title="Editar">Editar</button>
+                <button class="btn-action" onclick="deleteUserById(${user.id})" title="Eliminar">Eliminar</button>
             </td>
         </tr>
         `;
@@ -289,8 +289,8 @@ function showPurchasesModal(userEmail) {
     
     if (!user) return;
     
-    console.log('📋 Mostrando modal para usuario:', user);
-    console.log('🛒 Productos del usuario:', products);
+    console.log('Mostrando modal para usuario:', user);
+    console.log('Productos del usuario:', products);
     
     const firstName = user.first_name || user.firstName || user.name || '';
     const lastName = user.last_name || user.lastName || user.apellido || '';
@@ -302,20 +302,20 @@ function showPurchasesModal(userEmail) {
     document.getElementById('modalUserInfo').innerHTML = `
         <div style="background: var(--light-bg); padding: 15px; border-radius: 8px; margin-bottom: 10px;">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                <div><strong>👤 Nombre:</strong> ${fullName}</div>
-                <div><strong>📧 Email:</strong> ${userEmail}</div>
-                <div><strong>📅 Registro:</strong> ${registrationDate}</div>
-                <div><strong>📊 Estado:</strong> <span class="badge ${user.active !== false ? 'badge-success' : 'badge-danger'}">${userStatus}</span></div>
+                <div><strong>Nombre:</strong> ${fullName}</div>
+                <div><strong>Email:</strong> ${userEmail}</div>
+                <div><strong>Registro:</strong> ${registrationDate}</div>
+                <div><strong>Estado:</strong> <span class="badge ${user.active !== false ? 'badge-success' : 'badge-danger'}">${userStatus}</span></div>
             </div>
         </div>
-        <h3 style="color: var(--primary-color); margin-bottom: 15px;">📦 Productos Publicados (${products.length})</h3>
+        <h3 style="color: var(--primary-color); margin-bottom: 15px;">Productos Publicados (${products.length})</h3>
     `;
     
     // Actualizar lista de productos
     const purchasesList = document.getElementById('modalPurchasesList');
     
     if (products.length === 0) {
-        purchasesList.innerHTML = '<li class="no-purchases">📦 Este usuario no ha publicado productos todavía</li>';
+        purchasesList.innerHTML = '<li class="no-purchases">Este usuario no ha publicado productos todavía</li>';
         document.getElementById('modalPurchasesSummary').innerHTML = '';
     } else {
         purchasesList.innerHTML = products.map((product, index) => {
@@ -328,11 +328,11 @@ function showPurchasesModal(userEmail) {
             return `
                 <li class="purchase-item">
                     <div class="purchase-item-header">
-                        <span class="product-name">🍎 ${productName}</span>
+                        <span class="product-name">${productName}</span>
                         <span class="product-quantity">Stock: ${amount}</span>
                     </div>
                     <div class="product-details">
-                        💵 Precio: $${price.toFixed(2)} | 📅 Vence: ${expirationDate}
+                        Precio: $${price.toFixed(2)} | Vence: ${expirationDate}
                     </div>
                     <div class="product-details" style="margin-top: 5px; font-style: italic; color: #666;">
                         ${description}
@@ -346,8 +346,8 @@ function showPurchasesModal(userEmail) {
         const totalValue = products.reduce((sum, product) => sum + ((product.amount || 0) * (product.price || 0)), 0);
         
         document.getElementById('modalPurchasesSummary').innerHTML = `
-            <span>📦 Total en inventario: <strong>${totalStock} unidades</strong></span>
-            <span>💰 Valor total: <strong>$${totalValue.toFixed(2)}</strong></span>
+            <span>Total en inventario: <strong>${totalStock} unidades</strong></span>
+            <span>Valor total: <strong>$${totalValue.toFixed(2)}</strong></span>
         `;
     }
     

@@ -36,9 +36,9 @@ function displayProducts(products) {
                 </span>
             </td>
             <td>
-                <button class="btn-action" onclick="viewProductDetails(${product.id})" title="Ver">👁️</button>
-                <button class="btn-action" onclick="editProduct(${product.id})" title="Editar">✏️</button>
-                <button class="btn-action" onclick="deleteProductById(${product.id})" title="Eliminar">🗑️</button>
+                <button class="btn-action" onclick="viewProductDetails(${product.id})" title="Ver">Ver</button>
+                <button class="btn-action" onclick="editProduct(${product.id})" title="Editar">Editar</button>
+                <button class="btn-action" onclick="deleteProductById(${product.id})" title="Eliminar">Eliminar</button>
             </td>
         </tr>
     `).join('');
