@@ -6,11 +6,23 @@ const LOCAL_API_URL = 'http://localhost:8080';
 // API productiva (datos reales de la app)
 const REMOTE_API_URL = 'https://api.life2food.com';
 
-// Mantén compatibilidad con el resto de scripts
-const API_BASE_URL = LOCAL_API_URL;
+// Detectar si estamos ejecutando la UI desde un entorno local
+const isBrowser = typeof window !== 'undefined';
+const hostname = isBrowser ? window.location.hostname : 'localhost';
+const isLocalEnvironment = (
+    hostname === 'localhost' ||
+    hostname === '127.0.0.1' ||
+    hostname === '0.0.0.0' ||
+    hostname.endsWith('.local')
+);
 
-console.log('API local (Spring Boot):', LOCAL_API_URL);
-console.log('API producción (Life2Food móvil):', REMOTE_API_URL);
+// Si estamos en localhost usamos el backend local; de lo contrario consumimos la API remota
+const API_BASE_URL = isLocalEnvironment ? LOCAL_API_URL : REMOTE_API_URL;
+
+console.log('[API] Entorno detectado:', hostname);
+console.log('[API] Base local (Spring Boot):', LOCAL_API_URL);
+console.log('[API] Base remota (Life2Food):', REMOTE_API_URL);
+console.log('[API] Base activa:', API_BASE_URL);
 
 // ============================================
 // FUNCIÓN PRINCIPAL DE PETICIONES
@@ -32,7 +44,7 @@ async function apiRequest(endpoint, options = {}, baseUrl = API_BASE_URL) {
         };
 
         const authToken = getStoredAuthToken();
-        if (authToken && baseUrl === LOCAL_API_URL) {
+        if (authToken && baseUrl === API_BASE_URL) {
             headers['Authorization'] = `Bearer ${authToken}`;
         }
         
@@ -70,14 +82,14 @@ const ProductsAPI = {
     create: (data) => apiRequest('/products', {
         method: 'POST',
         body: JSON.stringify(data)
-    }, LOCAL_API_URL),
+    }, API_BASE_URL),
     update: (id, data) => apiRequest(`/products/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(data)
-    }, LOCAL_API_URL),
+    }, API_BASE_URL),
     delete: (id) => apiRequest(`/products/${id}`, {
         method: 'DELETE'
-    }, LOCAL_API_URL)
+    }, API_BASE_URL)
 };
 
 // ============================================
@@ -89,32 +101,32 @@ const UsersAPI = {
     create: (data) => apiRequest('/users', {
         method: 'POST',
         body: JSON.stringify(data)
-    }, LOCAL_API_URL),
+    }, API_BASE_URL),
     update: (id, data) => apiRequest(`/users/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(data)
-    }, LOCAL_API_URL),
+    }, API_BASE_URL),
     delete: (id) => apiRequest(`/users/${id}`, {
         method: 'DELETE'
-    }, LOCAL_API_URL)
+    }, API_BASE_URL)
 };
 
 // ============================================
 // API DE CARRITO (COMPRAS)
 // ============================================
 const CartAPI = {
-    getCart: (userId) => apiRequest(`/cart/${userId}`, {}, LOCAL_API_URL),
+    getCart: (userId) => apiRequest(`/cart/${userId}`, {}, API_BASE_URL),
     addItem: (userId, data) => apiRequest(`/cart/${userId}/items`, {
         method: 'POST',
         body: JSON.stringify(data)
-    }, LOCAL_API_URL),
+    }, API_BASE_URL),
     updateItem: (userId, productId, data) => apiRequest(`/cart/${userId}/items/${productId}`, {
         method: 'PUT',
         body: JSON.stringify(data)
-    }, LOCAL_API_URL),
+    }, API_BASE_URL),
     removeItem: (userId, productId) => apiRequest(`/cart/${userId}/items/${productId}`, {
         method: 'DELETE'
-    }, LOCAL_API_URL)
+    }, API_BASE_URL)
 };
 
 // ============================================
@@ -124,25 +136,25 @@ const AuthAPI = {
     login: (email, password) => apiRequest('/auth/login', {
         method: 'POST',
         body: JSON.stringify({ email, password })
-    }, LOCAL_API_URL),
+    }, API_BASE_URL),
     logout: (token) => apiRequest('/auth/logout', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`
         }
-    }, LOCAL_API_URL),
+    }, API_BASE_URL),
     refresh: (token) => apiRequest('/auth/refresh', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`
         }
-    }, LOCAL_API_URL),
+    }, API_BASE_URL),
     validateToken: (token) => apiRequest('/auth/validate', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
         }
-    }, LOCAL_API_URL)
+    }, API_BASE_URL)
 };
 
 // ============================================
