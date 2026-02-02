@@ -11,7 +11,7 @@ RED='\033[0;31m'
 NC='\033[0m' # Sin color
 
 # Configuración del servidor
-SSH_KEY="~/Downloads/life2food.pem"
+SSH_KEY="$HOME/.ssh/life2food.pem"
 SERVER_USER="ec2-user"
 SERVER_IP="3.149.164.235"
 PROJECT_PATH="/var/www/Dashboard-Life2food"
