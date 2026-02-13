@@ -47,6 +47,24 @@ ssh -i "$SSH_KEY" "${SERVER_USER}@${SERVER_IP}" << 'EOF'
     echo -e "${BLUE}→${NC} Obteniendo actualizaciones del repositorio..."
     git pull
     
+    echo -e "${BLUE}→${NC} Verificando variables de entorno del backend..."
+    if [ ! -f /etc/life2food/owners.env ]; then
+        echo -e "${YELLOW}ℹ${NC}  Falta /etc/life2food/owners.env en el servidor."
+        echo -e "${YELLOW}ℹ${NC}  Crea el archivo antes de continuar."
+        exit 1
+    fi
+
+    echo -e "${BLUE}→${NC} Construyendo imagen del backend..."
+    docker build -t life2food-backend:latest ./backend
+
+    echo -e "${BLUE}→${NC} Reiniciando contenedor del backend..."
+    docker stop life2food-backend >/dev/null 2>&1 || true
+    docker rm life2food-backend >/dev/null 2>&1 || true
+    docker run -d --name life2food-backend --restart unless-stopped \
+        --env-file /etc/life2food/owners.env \
+        -p 8080:8080 \
+        life2food-backend:latest
+
     echo ""
     echo -e "${GREEN}✓${NC} Despliegue completado exitosamente!"
     echo -e "${YELLOW}ℹ${NC}  El sitio está disponible en: https://owners.life2food.com"
