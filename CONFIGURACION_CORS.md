@@ -19,7 +19,7 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
-                    "http://localhost:8080",
+                    "http://localhost:3000",
                     "http://localhost:4200",
                     "https://api.life2food.com"
                 )
@@ -33,22 +33,22 @@ public class CorsConfig implements WebMvcConfigurer {
 
 ## 🌐 Dominios Permitidos
 
-**IMPORTANTE**: Debes agregar `http://localhost:8080` a los orígenes permitidos en el backend:
+**IMPORTANTE**: Debes agregar `http://localhost:3000` a los orígenes permitidos en el backend:
 
 ```java
 .allowedOrigins(
-    "http://localhost:8080",      // ⭐ NECESARIO para desarrollo local
+    "http://localhost:3000",      // ⭐ NECESARIO para desarrollo local
     "http://localhost:4200",
     "https://api.life2food.com"
 )
 ```
 
-### ¿Por qué localhost:8080?
+### ¿Por qué localhost:3000?
 
 Los navegadores **NO permiten** hacer peticiones AJAX desde archivos locales (`file://`). Por eso necesitas:
 
-1. Ejecutar un servidor HTTP local (puerto 8080)
-2. Abrir la app desde `http://localhost:8080`
+1. Ejecutar un servidor HTTP local (puerto 3000)
+2. Abrir la app desde `http://localhost:3000`
 3. Que el backend permita este origen en CORS
 
 ### Si usas otro puerto
@@ -57,9 +57,9 @@ Si usas Live Server u otro servidor en diferente puerto, agrégalo también:
 
 ```java
 .allowedOrigins(
-    "http://localhost:8080",
+    "http://localhost:3000",
     "http://127.0.0.1:5500",  // Live Server
-    "http://localhost:3000",   // Otro servidor
+    "http://localhost:3001",   // Otro servidor
     "https://api.life2food.com"
 )
 ```

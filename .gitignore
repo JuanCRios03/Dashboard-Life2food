@@ -28,6 +28,9 @@ venv/
 *.swp
 *~
 
+# Build artifacts (Spring Boot)
+backend/target/
+
 # Archivos de desarrollo local
 .env
 .env.local

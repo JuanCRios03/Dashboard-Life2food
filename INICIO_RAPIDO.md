@@ -18,18 +18,18 @@ python servidor.py
 
 **Opción C: Usando comando directo**
 ```bash
-python -m http.server 8080
+python -m http.server 3000
 ```
 
-Esto abrirá un servidor en: `http://localhost:8080`
+Esto abrirá un servidor en: `http://localhost:3000`
 
 ### 2. Configurar CORS en el Backend
 
-El backend **DEBE permitir** `http://localhost:8080`:
+El backend **DEBE permitir** `http://localhost:3000`:
 
 ```java
 .allowedOrigins(
-    "http://localhost:8080",  // ⭐ NECESARIO
+    "http://localhost:3000",  // ⭐ NECESARIO
     "http://localhost:4200",
     "https://api.life2food.com"
 )
@@ -37,7 +37,7 @@ El backend **DEBE permitir** `http://localhost:8080`:
 
 ### 3. Probar la Conexión
 
-Ve a: `http://localhost:8080/test-api.html`
+Ve a: `http://localhost:3000/test-api.html`
 
 Haz clic en los botones para verificar:
 - ✅ Conexión con la API
@@ -49,7 +49,7 @@ Haz clic en los botones para verificar:
 ¡Perfecto! Ahora ve a:
 
 ```
-http://localhost:8080/index.html
+http://localhost:3000/index.html
 ```
 
 Y empieza a usar el panel administrativo.

@@ -226,7 +226,7 @@ El backend debe permitir las siguientes URLs:
 // Configuración CORS recomendada
 const corsOptions = {
   origin: [
-    'http://localhost:8080',
+    'http://localhost:3000',
     'https://admin.life2food.com'  // Producción
   ],
   credentials: true,
@@ -253,7 +253,7 @@ const corsOptions = {
    - `/auth/validate`
 
 3. **Configurar CORS**
-   - Permitir `http://localhost:8080` para desarrollo
+  - Permitir `http://localhost:3000` para desarrollo
    - Permitir dominio de producción cuando esté listo
 
 4. **Probar el sistema**
@@ -307,7 +307,7 @@ Una vez probado el sistema, podrás:
    - `/auth/validate`
 
 3. **Configurar CORS**
-   - Permitir `http://localhost:8080` para desarrollo
+  - Permitir `http://localhost:3000` para desarrollo
    - Permitir dominio de producción cuando esté listo
 
 4. **Probar el sistema**

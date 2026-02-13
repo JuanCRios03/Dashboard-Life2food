@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    default-encoding: UTF-8
+
+app:
+  admin:
+    email: ${ADMIN_EMAIL:}
+    password: ${ADMIN_PASSWORD:}
+    name: ${ADMIN_NAME:Administrador Life2Food}
+    role: ${ADMIN_ROLE:SUPER_ADMIN}
+  mail:
+    from: ${SMTP_FROM:${SMTP_USERNAME:}}
+  jwt:
+    secret: ${JWT_SECRET:}
+    issuer: life2food
+    expirationMinutes: 480
+  auth:
+    codeTtlMinutes: 10
+    codeMaxAttempts: 5
+    loginMaxAttempts: 5
+    loginLockMinutes: 15
+
+logging:
+  level:
+    org.springframework.security: INFO

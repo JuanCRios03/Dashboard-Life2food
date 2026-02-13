@@ -8,7 +8,7 @@
 ```
 
 Esto va a:
-1. ✅ Iniciar servidor en `http://localhost:8080`
+1. ✅ Iniciar servidor en `http://localhost:3000`
 2. ✅ Abrir automáticamente `test-api.html`
 
 ### Paso 2: Configura CORS en Backend
@@ -17,7 +17,7 @@ Esto va a:
 
 ```java
 .allowedOrigins(
-    "http://localhost:8080",      // ⭐ AGREGAR ESTA LÍNEA
+    "http://localhost:3000",      // ⭐ AGREGAR ESTA LÍNEA
     "http://localhost:4200",
     "https://api.life2food.com"
 )
@@ -30,16 +30,16 @@ life2food.backend.config.CorsConfig.java
 
 ### Paso 3: Prueba la Conexión
 
-En el navegador verás: `http://localhost:8080/test-api.html`
+En el navegador verás: `http://localhost:3000/test-api.html`
 
 Haz clic en: **🔍 Test Conexión**
 
 #### ✅ Si funciona:
 - Verás un mensaje verde con los datos
-- Puedes ir a `http://localhost:8080/index.html`
+- Puedes ir a `http://localhost:3000/index.html`
 
 #### ❌ Si NO funciona:
-- Error de CORS → Falta agregar localhost:8080 al backend
+- Error de CORS → Falta agregar localhost:3000 al backend
 - Error de conexión → Backend no está corriendo
 - Failed to fetch → Revisa la consola (F12)
 
@@ -66,7 +66,7 @@ Haz clic en: **🔍 Test Conexión**
 
 **Solución**:
 1. Verifica que el backend esté corriendo
-2. Pide que agreguen `http://localhost:8080` al CORS
+2. Pide que agreguen `http://localhost:3000` al CORS
 3. Reinicia el backend después de cambiar CORS
 
 ### Error: "Origen: file://"
@@ -92,8 +92,8 @@ python --version
 ## 📋 Resumen
 
 1. **Ejecuta**: `INICIAR.bat`
-2. **Pide**: Agregar `http://localhost:8080` al CORS del backend
-3. **Prueba**: En `http://localhost:8080/test-api.html`
-4. **Usa**: `http://localhost:8080/index.html`
+2. **Pide**: Agregar `http://localhost:3000` al CORS del backend
+3. **Prueba**: En `http://localhost:3000/test-api.html`
+4. **Usa**: `http://localhost:3000/index.html`
 
 ¡Eso es todo! 🚀

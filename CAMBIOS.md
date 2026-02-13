@@ -10,7 +10,6 @@
 
 ### 2. Archivos Eliminados
 - ❌ `proxy-server.py` - Ya no se necesita proxy
-- ❌ `servidor.py` - Ya no se necesita servidor local
 - ❌ `CORS_CONFIG_BACKEND.java` - Movido a documentación
 - ❌ `diagnostico-api.html` - Reemplazado por test-api.html mejorado
 - ❌ Todos los `.md` antiguos excepto README.md
@@ -70,7 +69,7 @@ life2food-admin/
 
 ### CORS del Backend
 ```java
-.allowedOrigins("http://localhost:8080", "http://localhost:4200", "https://api.life2food.com")
+.allowedOrigins("http://localhost:3000", "http://localhost:4200", "https://api.life2food.com")
 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
 .allowedHeaders("*")
 .allowCredentials(true)
